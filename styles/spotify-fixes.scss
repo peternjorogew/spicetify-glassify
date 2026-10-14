@@ -29,6 +29,17 @@ body.glassify-macos .main-globalNav-historyButtons {
   }
 }
 
+/* ========== Home background ========== */
+
+/*
+ * Spotify now colors this overlay from the first Home shortcut and changes it
+ * again while shortcuts are hovered. Keep it transparent so Glassify's playing
+ * artwork remains visible and stable behind the Home content.
+ */
+body[data-page-url="/"] .dqwQhIudKoD98eWJzj5E {
+  background-color: transparent !important;
+}
+
 /* ========== Add-to-playlist popover ========== */
 
 form:has(> #curation-sheet-list[aria-label="Add to playlist menu"]) {
