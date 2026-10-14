@@ -6,6 +6,29 @@
  * available again.
  */
 
+/* ========== Global navigation ========== */
+
+/* Leave room for the native macOS traffic-light controls. */
+body.glassify-macos .main-globalNav-historyButtons {
+  margin-inline-start: 72px !important;
+}
+
+/* Current Spotify builds frame these groups with square containers. */
+.main-globalNav-historyButtons,
+.main-actionButtons {
+  background: transparent !important;
+  border: none !important;
+  border-radius: var(--s-rounded) !important;
+  box-shadow: none !important;
+
+  &::before,
+  &::after {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
 /* ========== Add-to-playlist popover ========== */
 
 form:has(> #curation-sheet-list[aria-label="Add to playlist menu"]) {
