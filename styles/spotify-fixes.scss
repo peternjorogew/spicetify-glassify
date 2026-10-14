@@ -134,6 +134,24 @@ body .main-card-cardContainer.Card {
   }
 }
 
+/* Make artwork open its album while preserving the separate text links below. */
+body[data-page-url="/"]
+  .main-card-cardContainer.Card
+  > [role="button"][aria-labelledby*="card-title-"] {
+  z-index: 2 !important;
+  clip-path: inset(0 0 52px 0 round var(--s-lg)) !important;
+}
+
+body[data-page-url="/"] .main-card-cardContainer.Card .main-card-PlayButtonContainer {
+  z-index: 3 !important;
+}
+
+/* Keep Home carousel navigation inside the shelf's clipped lower edge. */
+body[data-page-url="/"] .main-view-container button[aria-label="Next"] {
+  position: relative !important;
+  top: -7px !important;
+}
+
 /* Keep Home carousel cards aligned when a release title is unusually long. */
 body[data-page-url="/"] .main-card-cardContainer [id^="card-title-"] {
   display: block !important;
