@@ -91,6 +91,39 @@ form:has(> #curation-sheet-list[aria-label="Add to playlist menu"]) {
   backdrop-filter: none !important;
 }
 
+/* ========== Card hover clarity ========== */
+
+/*
+ * The theme's full-card hover filter obscures album and artist links. Keep the
+ * card content sharp and use a restrained glass highlight as the hover cue.
+ */
+.main-card-card {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease !important;
+
+  &:hover,
+  &:focus-within {
+    filter: none !important;
+    background-color: rgba(255, 255, 255, 0.055) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 8px 24px rgba(0, 0, 0, 0.16) !important;
+
+    .main-card-imageContainer,
+    .main-card-cardMetadata,
+    .main-card-cardContainer,
+    [data-encore-id="cardTitle"],
+    [data-encore-id="cardSubtitle"] {
+      filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+}
+
 /* ========== Card play-button hover overlay ========== */
 
 .main-card-imageContainer {
