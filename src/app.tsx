@@ -3,6 +3,7 @@ import addPlayerData from "@/features/addPlayerData.ts";
 import addUMV from "@/features/addUMV.tsx";
 import setBackground from "@/features/setBackground.tsx";
 import setControls from "@/features/setControls.ts";
+import initHomeAccent from "@/features/syncHomeAccent.ts";
 import setPlayer from "@/features/setPlaybar.tsx";
 import waitForGlobal from "@/utils/dom/waitForGlobal.ts";
 import initNotificationSystem from "@/utils/initNotificationSystem.tsx";
@@ -23,6 +24,7 @@ const main = async () => {
 
   patchIcons();
 
+  initHomeAccent();
   addPlayerData();
   addPageData();
 
