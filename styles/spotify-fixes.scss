@@ -160,12 +160,6 @@ body[data-page-url="/"] .search-searchCategory-carouselButton {
   }
 }
 
-/* Use one stable cursor across the nested clickable artwork layers. */
-body[data-page-url="/"] .main-card-cardContainer.Card,
-body[data-page-url="/"] .main-card-cardContainer.Card * {
-  cursor: pointer !important;
-}
-
 /* Keep Home carousel cards aligned when a release title is unusually long. */
 body[data-page-url="/"] .main-card-cardContainer [id^="card-title-"] {
   display: block !important;
