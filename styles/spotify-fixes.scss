@@ -134,21 +134,19 @@ body .main-card-cardContainer.Card {
   }
 }
 
-/* Keep the native full-card action available below visible card content. */
-body[data-page-url="/"]
-  .main-card-cardContainer.Card
-  > [role="button"][aria-labelledby*="card-title-"] {
-  z-index: 2 !important;
-}
-
+/* Home cards navigate to their destination; direct playback happens there. */
 body[data-page-url="/"] .main-card-cardContainer.Card .main-card-PlayButtonContainer {
-  z-index: 3 !important;
+  display: none !important;
 }
 
-/* Lift shelf navigation clear of the horizontally clipped card viewport. */
+/* Keep shelf navigation fully inside the clipped card viewport. */
 body[data-page-url="/"] .main-view-container button[aria-label="Next"] {
+  position: absolute !important;
+  inset: auto 12px 12px auto !important;
   z-index: 10 !important;
-  translate: 0 -14px !important;
+  margin: 0 !important;
+  transform: none !important;
+  translate: none !important;
 }
 
 /* Keep Home carousel cards aligned when a release title is unusually long. */
