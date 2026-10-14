@@ -12,9 +12,11 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
   const currentUrl = getImageUrl(data.item);
   if (!currentUrl) return;
   document.body.style.setProperty("--np-img-url", `url("${currentUrl}")`);
+  // const currentColors = await getExtractedColors([currentUrl]);
   tempStore.getState().setPlayer({
     current: {
       url: currentUrl,
+      // colors: currentColors?.data?.extractedColors?.[0] ?? undefined,
       data: data.item,
     },
   });
@@ -24,8 +26,10 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
         items?.map(async (item) => {
           const url = getImageUrl(item);
           if (!url) return null;
+          // const colors = await getExtractedColors([url]);
           return {
             url,
+            // colors: colors?.data?.extractedColors?.[0] ?? undefined,
             data: item,
           };
         }) ?? [],
