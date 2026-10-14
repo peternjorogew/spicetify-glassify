@@ -40,6 +40,24 @@ body[data-page-url="/"] .dqwQhIudKoD98eWJzj5E {
   background-color: transparent !important;
 }
 
+/* ========== Artist-page glass panels ========== */
+
+/*
+ * Match the action bar and Popular tracks surface to the artist header instead
+ * of leaving the artwork sharp behind otherwise translucent panels.
+ */
+body[data-page-url^="/artist/"] {
+  .main-actionBar-ActionBar,
+  .main-trackList-trackList {
+    background-color: var(--glass-bg) !important;
+    background-clip: padding-box !important;
+    border-radius: var(--s-2xl) !important;
+    box-shadow: var(--shadow-glass-large) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(90%) !important;
+    backdrop-filter: blur(12px) saturate(90%) !important;
+  }
+}
+
 /* ========== Add-to-playlist popover ========== */
 
 form:has(> #curation-sheet-list[aria-label="Add to playlist menu"]) {
