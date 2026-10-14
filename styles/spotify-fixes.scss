@@ -139,10 +139,25 @@ body[data-page-url="/"] .main-card-cardContainer.Card .main-card-PlayButtonConta
   display: none !important;
 }
 
-/* Keep carousel controls above neighboring glass surfaces without
- * overriding Spotify's own previous/next positioning. */
+/*
+ * Spotify positions both controls on a 16px rail below the card row. Anchor
+ * them to opposite sides and lift them into the visual centre of the cards.
+ */
 body[data-page-url="/"] .search-searchCategory-carouselButton {
+  top: calc(50% - 104px) !important;
+  bottom: auto !important;
   z-index: 10 !important;
+  transform: translateY(-50%) !important;
+
+  &:first-child {
+    right: auto !important;
+    left: 8px !important;
+  }
+
+  &:last-child {
+    right: 8px !important;
+    left: auto !important;
+  }
 }
 
 /* Use one stable cursor across the nested clickable artwork layers. */
