@@ -1,6 +1,7 @@
 import addPageData from "@/features/addPageData.ts";
 import addPlayerData from "@/features/addPlayerData.ts";
 import addUMV from "@/features/addUMV.tsx";
+import enableHomeCardArtworkLinks from "@/features/enableHomeCardArtworkLinks.ts";
 import setBackground from "@/features/setBackground.tsx";
 import setControls from "@/features/setControls.ts";
 import setPlayer from "@/features/setPlaybar.tsx";
@@ -25,6 +26,7 @@ const main = async () => {
 
   addPlayerData();
   addPageData();
+  enableHomeCardArtworkLinks();
 
   addUMV();
   setBackground();
