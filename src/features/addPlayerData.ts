@@ -1,3 +1,4 @@
+import { setHomeAccentColor } from "@/features/syncHomeAccent.ts";
 import tempStore, { type PlayerData } from "@/store/tempStore.ts";
 import waitForGlobal from "@/utils/dom/waitForGlobal.ts";
 
@@ -12,11 +13,21 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
   const currentUrl = getImageUrl(data.item);
   if (!currentUrl) return;
   document.body.style.setProperty("--np-img-url", `url("${currentUrl}")`);
-  // const currentColors = await getExtractedColors([currentUrl]);
+
+  const currentUri = data.item?.uri;
+  if (currentUri) {
+    Spicetify.colorExtractor(currentUri)
+      .then((colors) =>
+        setHomeAccentColor(
+          colors.DARK_VIBRANT || colors.PROMINENT || colors.VIBRANT_NON_ALARMING,
+        ),
+      )
+      .catch((error) => console.error("Unable to extract the playing-track accent color:", error));
+  }
+
   tempStore.getState().setPlayer({
     current: {
       url: currentUrl,
-      // colors: currentColors?.data?.extractedColors?.[0] ?? undefined,
       data: data.item,
     },
   });
@@ -26,10 +37,8 @@ async function addPlayerData(playerData?: typeof Spicetify.Player.data) {
         items?.map(async (item) => {
           const url = getImageUrl(item);
           if (!url) return null;
-          // const colors = await getExtractedColors([url]);
           return {
             url,
-            // colors: colors?.data?.extractedColors?.[0] ?? undefined,
             data: item,
           };
         }) ?? [],
