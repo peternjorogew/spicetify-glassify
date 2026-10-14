@@ -142,11 +142,17 @@ body[data-page-url="/"] .main-card-cardContainer.Card .main-card-PlayButtonConta
 /* Keep shelf navigation fully inside the clipped card viewport. */
 body[data-page-url="/"] .main-view-container button[aria-label="Next"] {
   position: absolute !important;
-  inset: auto 12px 12px auto !important;
+  inset: auto 12px 24px auto !important;
   z-index: 10 !important;
   margin: 0 !important;
   transform: none !important;
   translate: none !important;
+}
+
+/* Use one stable cursor across the nested clickable artwork layers. */
+body[data-page-url="/"] .main-card-cardContainer.Card,
+body[data-page-url="/"] .main-card-cardContainer.Card * {
+  cursor: pointer !important;
 }
 
 /* Keep Home carousel cards aligned when a release title is unusually long. */
