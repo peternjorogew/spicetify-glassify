@@ -1,10 +1,9 @@
 /*
  * Current Spotify Home cards place navigation and direct-play controls in
- * overlapping layers. Glassify removes direct play on Home, then forwards an
- * artwork click to the card's real album, playlist, show, or artist link.
+ * overlapping layers. Glassify removes direct play on Home, then routes clicks
+ * on otherwise non-interactive card surfaces to the card's real destination.
  */
 const CARD_SELECTOR = ".main-card-cardContainer.Card";
-const IMAGE_SELECTOR = ".main-card-imageContainer";
 const DESTINATION_TYPES = ["playlist", "album", "collection", "show", "episode", "artist"];
 
 function getDestination(card: HTMLElement) {
@@ -36,20 +35,18 @@ function activateHomeCard(event: MouseEvent) {
   }
 
   const target = event.target;
-  if (!(target instanceof Element)) return;
+  if (!(target instanceof Element) || target.closest("a, button")) return;
 
-  const artwork = target.closest(IMAGE_SELECTOR);
-  if (!artwork) return;
-
-  const card = artwork.closest<HTMLElement>(CARD_SELECTOR);
+  const card = target.closest<HTMLElement>(CARD_SELECTOR);
   if (!card) return;
 
   const destination = getDestination(card);
-  if (!destination || destination.contains(target)) return;
+  const href = destination?.getAttribute("href");
+  if (!href) return;
 
   event.preventDefault();
   event.stopPropagation();
-  destination.click();
+  Spicetify.Platform.History.push(href);
 }
 
 export default function enableHomeCardArtworkLinks() {
