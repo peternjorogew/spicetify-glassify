@@ -99,10 +99,24 @@ form:has(> #curation-sheet-list[aria-label="Add to playlist menu"]) {
  * Retain only a restrained glass highlight while leaving card content legible.
  */
 body .main-card-cardContainer.Card {
+  isolation: isolate !important;
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
     box-shadow 160ms ease !important;
+
+  /*
+   * Keep Spotify's full-card click target functional while rendering every real
+   * card surface above the glass overlay.
+   */
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &.main-card-cardContainer::after {
+    z-index: 0 !important;
+  }
 
   &:hover,
   &:focus-within {
@@ -113,11 +127,19 @@ body .main-card-cardContainer.Card {
       0 8px 24px rgba(0, 0, 0, 0.16) !important;
 
     &.main-card-cardContainer::after {
-      background-color: rgba(255, 255, 255, 0.025) !important;
-      -webkit-backdrop-filter: blur(1px) brightness(0.96) !important;
-      backdrop-filter: blur(1px) brightness(0.96) !important;
+      background-color: rgba(255, 255, 255, 0.035) !important;
+      -webkit-backdrop-filter: blur(8px) brightness(0.78) !important;
+      backdrop-filter: blur(8px) brightness(0.78) !important;
     }
   }
+}
+
+/* Keep Home carousel cards aligned when a release title is unusually long. */
+body[data-page-url="/"] .main-card-cardContainer [id^="card-title-"] {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 /* ========== Card play-button hover overlay ========== */
