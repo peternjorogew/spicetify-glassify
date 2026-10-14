@@ -139,18 +139,10 @@ body[data-page-url="/"] .main-card-cardContainer.Card .main-card-PlayButtonConta
   display: none !important;
 }
 
-/* Center both carousel controls against the artwork row. */
-body[data-page-url="/"] .search-searchCategory-carousel {
-  position: relative !important;
-}
-
+/* Keep carousel controls above neighboring glass surfaces without
+ * overriding Spotify's own previous/next positioning. */
 body[data-page-url="/"] .search-searchCategory-carouselButton {
-  position: absolute !important;
-  top: 50% !important;
-  bottom: auto !important;
   z-index: 10 !important;
-  transform: translateY(-50%) !important;
-  translate: none !important;
 }
 
 /* Use one stable cursor across the nested clickable artwork layers. */
