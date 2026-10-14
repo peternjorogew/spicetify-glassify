@@ -7,13 +7,15 @@ import setPlayer from "@/features/setPlaybar.tsx";
 import waitForGlobal from "@/utils/dom/waitForGlobal.ts";
 import initNotificationSystem from "@/utils/initNotificationSystem.tsx";
 import patchIcons from "@/utils/patchIcons.ts";
-import { isWindows } from "@/utils/platform.ts";
+import { isMac, isWindows } from "@/utils/platform.ts";
 import addSettings from "@/utils/settings/addSettings.tsx";
 import { setupAnalytics } from "./setupAnalytics.ts";
 
 const main = async () => {
   await waitForGlobal(() => Spicetify?.Platform && Spicetify?.React && Spicetify?.ReactDOM);
   await new Promise((res) => Spicetify?.Events?.webpackLoaded?.on(res));
+
+  document.body.classList.toggle("glassify-macos", isMac());
 
   initNotificationSystem();
 
